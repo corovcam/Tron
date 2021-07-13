@@ -6,18 +6,13 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     public Transform segmentPrefab;
-    public GameObject gridArea;
     public KeyCode[] movementKeys;
 
-    private GameObject[] _players;
     private Vector2 _dir;
     private List<Transform> _segments;
-    private int _numberOfPlayers;
 
     void Start()
     {
-        _players = GameObject.FindGameObjectsWithTag("Player");
-        _numberOfPlayers = _players.Length;
         _segments = new List<Transform>();
         _segments.Add(this.transform);
         switch (this.name)
@@ -41,7 +36,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (!PauseControl.gameIsPaused)
+        if (!PauseControl.GameIsPaused)
         {
             Movement();
         }
@@ -103,7 +98,7 @@ public class Player : MonoBehaviour
         {
             Destroy(segment.gameObject);
         }
-        _numberOfPlayers -= 1;
+        GameOptions.CurrentPlayersCount -= 1;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -111,19 +106,29 @@ public class Player : MonoBehaviour
         if (collision.tag == "Obstacle" || collision.tag == "Player")
         {
             DestroyEvent();
-            _players = GameObject.FindGameObjectsWithTag("Player");
-            if (_numberOfPlayers == 1)
+            GameOptions.Players = GameObject.FindGameObjectsWithTag("Player");
+            if (GameOptions.CurrentPlayersCount == 1)
             {
-                string winnerString = _players.FirstOrDefault(obj => obj.name != this.name).name;
+                string winnerString = GameOptions.Players.FirstOrDefault(obj => obj.name != this.name).name;
                 GameOptions.Winner = winnerString.Substring(0, 6) + " " + winnerString[6];
                 SceneManager.LoadScene("GameOver");
             }
         }
-        else if (collision.tag == "SpeedUp" || collision.tag == "SpeedDown")
+        if (collision.tag == "SpeedUp" || collision.tag == "SpeedDown")
         {
-            gridArea.GetComponent<PowerUp>().PowerUpTrigger(collision.gameObject);   
+            GameObject.FindGameObjectWithTag("MainCamera")
+                .GetComponent<PowerUp>()
+                .PowerUpTrigger(collision.gameObject);   
         }
     }
+
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.tag == "Obstacle" || collision.tag == "Player")
+    //    {
+
+    //    }
+    //}
 
     public List<Transform> GetSegmentList()
     {

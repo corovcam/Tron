@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class PowerUp : MonoBehaviour
@@ -10,47 +11,29 @@ public class PowerUp : MonoBehaviour
     public float maxSpawnInterval = 10f;
 
     private GameObject[] _powerUpArray;
-    private GameObject[] _players;
-    private GameObject _powerInstance;
-    private float _lastTime;
+    private float _sinceLastPower;
     private float _spawnInterval;
-    private bool _isTriggered = false;
-    private bool _effectOn = false;
 
     void Start()
     {
         _powerUpArray = new GameObject[] { speedUp, speedDown };
-        _lastTime = Time.time;
+        _sinceLastPower = Time.time;
         _spawnInterval = Random.Range(minSpawnInterval, maxSpawnInterval);
     }
 
     void Update()
     {
-        float deltaTime = Time.time - _lastTime;
+        float deltaTime = Time.time - _sinceLastPower;
         if (deltaTime > _spawnInterval)
         {
             RandomPowerUp();
-            _lastTime = Time.time;
-        }
-        if (_powerInstance != null)
-        {
-            if (deltaTime < 5 && _isTriggered && !_effectOn)
-            {
-                PowerEffect(true);
-                _effectOn = true;
-            }
-            else if (deltaTime >= 5)
-            {
-                PowerEffect(false);
-                _isTriggered = false;
-                _effectOn = false;
-            }
+            _sinceLastPower = Time.time;
         }
     }
 
     private void RandomPowerUp()
     {
-        _players = GameObject.FindGameObjectsWithTag("Player");
+        GameOptions.Players = GameObject.FindGameObjectsWithTag("Player");
         Bounds bounds = gridArea.bounds;
 
         float x = 0, y = 0;
@@ -63,13 +46,12 @@ public class PowerUp : MonoBehaviour
         }
 
         GameObject power = _powerUpArray[Random.Range(0, _powerUpArray.Length)];
-        _powerInstance = Instantiate(power);
-        _powerInstance.transform.position = new Vector3(x, y);
+        Instantiate(power).transform.position = new Vector3(x, y);
     }
 
     private bool CheckPosition(float x, float y)
     {
-        foreach (GameObject player in _players)
+        foreach (GameObject player in GameOptions.Players)
         {
             List<Transform> segmentList = player.GetComponent<Player>().GetSegmentList();
             foreach (Transform segment in segmentList)
@@ -85,32 +67,35 @@ public class PowerUp : MonoBehaviour
         return true;
     } 
 
-    private void PowerEffect(bool active)
+    private void PowerEffect(GameObject power)
     {
-        if (active)
+        switch (power.tag)
         {
-            switch (_powerInstance.tag)
-            {
-                case "SpeedUp":
-                    Time.fixedDeltaTime -= 0.05f;
-                    break;
-                case "SpeedDown":
-                    Time.fixedDeltaTime += 0.04f;
-                    break;
-                default:
-                    break;
-            }
-        }
-        else
-        {
-            GameInit.SetSpeed();
+            case "SpeedUp":
+                Time.fixedDeltaTime -= 0.02f;
+                Destroy(power);
+                break;
+            case "SpeedDown":
+                Time.fixedDeltaTime += 0.02f;
+                Destroy(power);
+                break;
+            default:
+                break;
         }
     }
 
-    public void PowerUpTrigger(GameObject powerUp)
+    IEnumerator PowerEffectCoroutine(GameObject power)
     {
-        _isTriggered = true;
-        powerUp.SetActive(false);
-        Start();
+        PowerEffect(power);
+
+        yield return new WaitForSeconds(Random.Range(3, 5));
+
+        GameInit.SetSpeed();
+    }
+
+    public void PowerUpTrigger(GameObject power)
+    {
+        StartCoroutine(PowerEffectCoroutine(power));
+        _spawnInterval = Random.Range(minSpawnInterval, maxSpawnInterval);
     }
 }

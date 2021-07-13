@@ -3,7 +3,8 @@ using UnityEngine;
 public class PauseControl : MonoBehaviour
 {
     public GameObject pauseIcon;
-    public GameObject canvas;
+    public GameObject canvasStop;
+    public GameObject canvasStart;
     public static bool gameIsPaused;
 
     void Update()
@@ -21,13 +22,14 @@ public class PauseControl : MonoBehaviour
         {
             Time.timeScale = 0f;
             pauseIcon.SetActive(true);
-            canvas.SetActive(true);
+            canvasStop.SetActive(true);
         }
         else
         {
             Time.timeScale = 1;
             pauseIcon.SetActive(false);
-            canvas.SetActive(false);
+            canvasStop.SetActive(false);
+            canvasStart.SetActive(false);
         }
     }
 

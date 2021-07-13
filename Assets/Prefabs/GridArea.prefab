@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2015330853823965802}
   - component: {fileID: 2015330853823965803}
-  - component: {fileID: -2246154435225535076}
   m_Layer: 0
   m_Name: GridArea
   m_TagString: Untagged
@@ -58,20 +57,3 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 82, y: 82}
   m_EdgeRadius: 0
---- !u!114 &-2246154435225535076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2015330853823965800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1c599642c510154aa2b7ce2c29236f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gridArea: {fileID: 0}
-  speedUp: {fileID: 0}
-  speedDown: {fileID: 0}
-  minSpawnInterval: 5
-  maxSpawnInterval: 10

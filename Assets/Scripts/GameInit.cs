@@ -4,13 +4,15 @@ public class GameInit : MonoBehaviour
 {
     public SpriteRenderer background;
     public GameObject player1, player2, player3, player4;
+    public GameObject canvas;
 
     void Awake()
     {
-        PauseControl.gameIsPaused = false;
+        PauseControl.GameIsPaused = false;
         SetPlayers();
         SetSpeed();
         SetBackground();
+        StartInfoPause();
     }
 
     private void SetPlayers()
@@ -36,6 +38,7 @@ public class GameInit : MonoBehaviour
                 break;
         }
         GameOptions.Players = GameObject.FindGameObjectsWithTag("Player");
+        GameOptions.CurrentPlayersCount = GameOptions.NumberOfPlayers;
     }
 
     public static void SetSpeed()
@@ -72,5 +75,12 @@ public class GameInit : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    private void StartInfoPause()
+    {
+        Time.timeScale = 0f;
+        canvas.SetActive(true);
+        PauseControl.GameIsPaused = true;
     }
 }
