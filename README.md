@@ -1,14 +1,14 @@
 # Tron
-Verzia: 1.0.0
-Dátum vydania 14.7.2021
-Jazyk skriptov: C#
-Game Engine: Unity 2020.3.11f1
+Verzia: 1.0.0  
+Dátum vydania 14.7.2021  
+Jazyk skriptov: C#  
+Game Engine: Unity 2020.3.11f1  
 Autor: Martin Čorovčák
 
 ## Popis hry
-Tron je hra pre 2-4 hráčov, ktorí sa aktívne pohybujú jedným zo 4 smerov (N, S, W, E) a ktorej cieľom je vydržať čo najdlhšie v hre alebo eliminovať svojich spoluhráčov a zostať ako posledný nažive.
-Prežiť znamená nenaraziť do prekážok, ktoré predstavujú buď steny hracieho poľa, farebné cesty ostatných spoluhráčov alebo vlastná cesta. 
-V hre sa nachádzajú 2 špeciálne schopnosti (PowerUps). Zelené štvorčeky zrýchlia a červené štvorčeky spomalia všetkých hráčov v hre na určitú, náhodne danú dobu. Tieto "PowerUps" sa spawnujú náhodne ale postupne ich pribúda viac a viac.
+Tron je hra pre 2-4 hráčov, ktorí sa aktívne pohybujú jedným zo 4 smerov (N, S, W, E) a ktorej cieľom je vydržať čo najdlhšie v hre alebo eliminovať svojich spoluhráčov a zostať ako posledný nažive.  
+Prežiť znamená nenaraziť do prekážok, ktoré predstavujú buď steny hracieho poľa, farebné cesty ostatných spoluhráčov alebo vlastná cesta.  
+V hre sa nachádzajú 2 špeciálne schopnosti (PowerUps). Zelené štvorčeky zrýchlia a červené štvorčeky spomalia všetkých hráčov v hre na určitú, náhodne danú dobu. Tieto "PowerUps" sa spawnujú náhodne ale postupne ich pribúda viac a viac.  
 Na začiatku v hlavnom menu sa dá zvoliť počet hráčov, počiatočná rýchlosť a pozadie hry. Hra na začiatku poskytne základne info o ovládaní a na konci hry (keď zostane už iba 1 hráč nažive) vypíše výťaza. Ak sa všetci hráči navzájom eliminujú v rovnakom čase, hra skončí remízou.
 
 ## Popis projektu
@@ -49,7 +49,7 @@ Scénu tvorí viacero GameObject-ov, ktoré sú už aktivované alebo sa aktivuj
 - **CanvasStart** - canvas, ktorý je aktívny iba na začiatku hry
 
 ## Nastavenie, inštalácia a spustenie
-Hra je vytvorená v editore Unity verzie 2020.3.11f1, ktorý je taktiež potrebný na spustenie a nastavenie tohto projektu. Stačí len jednoducho naklonovať repozitár a otvoriť adresár projektu v Unity Hub alebo priamo v Editore. Pred prvým spustením sa vytvoria všetky potrebné meta súbory a skompilujú sa jednotlivé skripty.
-Hra je už predkompilovaná, využíva knižnicu WebGL a je v prehliadači dostupná a spustiteľná na tomto odkaze:
-<https://developer.cloud.unity3d.com//share/share.html?shareId=-y6_gRZaQv>
-Hra bola základne tvorená pre rozlíšenie 1920x1080, ale je optimalizovaná aj pre iné rozlíšenia v prehliadači (aspect ratio: 16:9, 4:3).
+Hra je vytvorená v editore Unity verzie 2020.3.11f1, ktorý je taktiež potrebný na spustenie a nastavenie tohto projektu. Stačí len jednoducho naklonovať repozitár a otvoriť adresár projektu v Unity Hub alebo priamo v Editore. Pred prvým spustením sa vytvoria všetky potrebné meta súbory a skompilujú sa jednotlivé skripty.  
+Hra je už predkompilovaná, využíva knižnicu WebGL a je v prehliadači dostupná a spustiteľná na tomto odkaze:  
+<https://developer.cloud.unity3d.com//share/share.html?shareId=-y6_gRZaQv>  
+Hra bola základne tvorená pre rozlíšenie 1920x1080, ale je optimalizovaná aj pre iné rozlíšenia v prehliadači (aspect ratio: 16:9, 4:3).  
