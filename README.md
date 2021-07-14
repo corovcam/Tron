@@ -51,5 +51,6 @@ Scénu tvorí viacero GameObject-ov, ktoré sú už aktivované alebo sa aktivuj
 ## Nastavenie, inštalácia a spustenie
 Hra je vytvorená v editore Unity verzie 2020.3.11f1, ktorý je taktiež potrebný na spustenie a nastavenie tohto projektu. Stačí len jednoducho naklonovať repozitár a otvoriť adresár projektu v Unity Hub alebo priamo v Editore. Pred prvým spustením sa vytvoria všetky potrebné meta súbory a skompilujú sa jednotlivé skripty.  
 Hra je už predkompilovaná, využíva knižnicu WebGL a je v prehliadači dostupná a spustiteľná na tomto odkaze:  
-<https://developer.cloud.unity3d.com//share/share.html?shareId=-y6_gRZaQv>  
+<https://play.unity.com/mg/other/tron-zhu3>  
+Alt link: <https://developer.cloud.unity3d.com/share/share.html?shareId=WkTwVLpa7w>  
 Hra bola základne tvorená pre rozlíšenie 1920x1080, ale je optimalizovaná aj pre iné rozlíšenia v prehliadači (aspect ratio: 16:9, 4:3).  
