@@ -2,7 +2,7 @@ using UnityEngine;
 
 public static class GameOptions
 {
-    private static int numberOfPlayers = 2, currentPlayersCount;
+    private static int numberOfPlayers = 2;
     private static string initialSpeed = "Normal", background = "Black";
     private static string winner;
     private static GameObject[] players;
@@ -52,18 +52,6 @@ public static class GameOptions
         set
         {
             winner = value;
-        }
-    }
-
-    public static int CurrentPlayersCount
-    {
-        get
-        {
-            return currentPlayersCount;
-        }
-        set
-        {
-            currentPlayersCount = value;
         }
     }
 

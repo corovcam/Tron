@@ -524,8 +524,8 @@ MonoBehaviour:
   gridArea: {fileID: 1609574034}
   speedUp: {fileID: 6429380137832372604, guid: 99e4d604311d376479465e222eff3ef5, type: 3}
   speedDown: {fileID: 6429380137832372604, guid: 6b458cb18161af443a256db974f7ef3a, type: 3}
-  minSpawnInterval: 2
-  maxSpawnInterval: 5
+  minSpawnInterval: 3
+  maxSpawnInterval: 8
 --- !u!1 &567011176
 GameObject:
   m_ObjectHideFlags: 0

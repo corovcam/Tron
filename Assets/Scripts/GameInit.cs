@@ -38,7 +38,6 @@ public class GameInit : MonoBehaviour
                 break;
         }
         GameOptions.Players = GameObject.FindGameObjectsWithTag("Player");
-        GameOptions.CurrentPlayersCount = GameOptions.NumberOfPlayers;
     }
 
     public static void SetSpeed()

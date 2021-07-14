@@ -1,5 +1,5 @@
+using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -98,21 +98,15 @@ public class Player : MonoBehaviour
         {
             Destroy(segment.gameObject);
         }
-        GameOptions.CurrentPlayersCount -= 1;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Obstacle" || collision.tag == "Player")
         {
-            DestroyEvent();
-            GameOptions.Players = GameObject.FindGameObjectsWithTag("Player");
-            if (GameOptions.CurrentPlayersCount == 1)
-            {
-                string winnerString = GameOptions.Players.FirstOrDefault(obj => obj.name != this.name).name;
-                GameOptions.Winner = winnerString.Substring(0, 6) + " " + winnerString[6];
-                SceneManager.LoadScene("GameOver");
-            }
+            GameObject.FindGameObjectWithTag("MainCamera")
+                .GetComponent<GameInit>()
+                .StartCoroutine(WaitOneframeAndDestroy());
         }
         if (collision.tag == "SpeedUp" || collision.tag == "SpeedDown")
         {
@@ -122,13 +116,24 @@ public class Player : MonoBehaviour
         }
     }
 
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    if (collision.tag == "Obstacle" || collision.tag == "Player")
-    //    {
+    IEnumerator WaitOneframeAndDestroy()
+    {
+        DestroyEvent();
 
-    //    }
-    //}
+        yield return 0;
+
+        GameOptions.Players = GameObject.FindGameObjectsWithTag("Player");
+        if (GameOptions.Players.Length == 1)
+        {
+            string winnerString = GameOptions.Players[0].name;
+            GameOptions.Winner = winnerString.Substring(0, 6) + " " + winnerString[6];
+            SceneManager.LoadScene("GameOver");
+        }
+        else if (GameOptions.Players.Length == 0) {
+            GameOptions.Winner = "No one";
+            SceneManager.LoadScene("GameOver");
+        }
+    }
 
     public List<Transform> GetSegmentList()
     {
